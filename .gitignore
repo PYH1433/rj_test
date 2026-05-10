@@ -1,0 +1,12 @@
+# Python 编译文件
+# 排除 __pycache__ 目录
+__pycache__/
+*.pyc
+
+# 测试报告
+allure-results/
+allure-report/
+
+# 日志
+logs/
+*.log
