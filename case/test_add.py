@@ -80,7 +80,6 @@ class TestAdd():
         }
         res = Request().post(url=self.url,json = data,headers=header)
         validate(instance=res.json(), schema=self.schema)
-        # assert res.json()["code"] == 200
         assert res.json()["data"] == login["data"]
 
 
