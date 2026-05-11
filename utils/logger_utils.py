@@ -74,7 +74,7 @@ class Logger:
             cls.logger.addHandler(handler)
             cls.logger.addHandler(info_handler)
             cls.logger.addHandler(error_handler)
-            cls.logger.addHandler(console_handler) 
+            # cls.logger.addHandler(console_handler) 
 
         return cls.logger
 

@@ -4,7 +4,7 @@ from utils.request_util import Request,host
 from utils.yaml_util import read_yaml
 
 
-class TestDetail():
+class TestDetail:
     url = host + "blog/getBlogDetail?blogId=" 
     schema = {
         "type": "object",

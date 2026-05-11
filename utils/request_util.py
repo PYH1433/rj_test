@@ -12,7 +12,7 @@ class Request:
         self.logger.info('接口信息是：{}'.format(kwargs))
         s = requests.get(url, **kwargs)
         self.logger.info('接口响应状态码：{}'.format(s.status_code))
-        self.logger.info('接口响应内容是：{}'.format(s.text))
+        # self.logger.info('接口响应内容是：{}'.format(s.text))
         return s
 
     # 发起post请求

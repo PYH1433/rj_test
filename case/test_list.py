@@ -1,9 +1,10 @@
-import json
+import pytest
 from jsonschema.validators import validate
-from requests import head
 from utils.request_util import Request,host
 from utils.yaml_util import read_yaml, write_yaml
 
+
+@pytest.mark.order(2)
 class TestList:
     url = host + "blog/getList"
     schema = {

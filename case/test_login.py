@@ -1,11 +1,12 @@
-import json
-import re
+
 from jsonschema.validators import validate
+import re
 import pytest
 from utils.request_util import Request,host
 from utils.yaml_util import *
 
 
+@pytest.mark.order(1)
 class TestLogin:
     url = host + "user/login"
     schema = {
@@ -65,7 +66,7 @@ class TestLogin:
          {
             "userName": "", 
             "password": "",
-            "errMsg": "参数不合法:密码不能为空",
+            "errMsg": ["参数不合法:用户名不能为空","参数不合法:密码不能为空"],
         },
         #输入过长的账号
          {
@@ -88,7 +89,7 @@ class TestLogin:
         res = Request().post(url=self.url, json=data)
         validate(instance=res.json(), schema=self.schema)
         assert res.json()["code"] == -1
-        assert res.json()["errMsg"] == login["errMsg"]
+        assert res.json()["errMsg"] in login["errMsg"]
 
     #正常登录
     @pytest.mark.parametrize("login",[

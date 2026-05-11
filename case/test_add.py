@@ -7,7 +7,7 @@ from utils.request_util import Request,host
 
 
 
-class TestAdd():
+class TestAdd:
     url = host + "blog/addBlog"
     schema = {
         "type": "object",
