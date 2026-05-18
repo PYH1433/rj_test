@@ -104,7 +104,7 @@ class TestLogin:
         res = Request().post(url=self.url, json=data)
         validate(instance=res.json(), schema=self.schema)
         assert res.json()["code"] == 200
-        assert re.match('\S{100,}',res.json()["data"]["token"])
+        assert re.match(r'\S{100,}',res.json()["data"]["token"])
 
 
         token = {
