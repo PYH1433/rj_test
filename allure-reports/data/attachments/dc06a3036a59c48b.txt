@@ -1,3 +1,0 @@
-[32mINFO    [0m utils.logger_utils:request_util.py:11 准备开始发起 get 请求,url:http://47.108.157.13:8090/user/getAuthorInfo?blogId=1520
-[32mINFO    [0m utils.logger_utils:request_util.py:12 接口信息是：{}
-[32mINFO    [0m utils.logger_utils:request_util.py:14 接口响应状态码：401
