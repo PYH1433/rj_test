@@ -1,0 +1,4 @@
+[32mINFO    [0m utils.logger_utils:request_util.py:20 准备开始发起 post 请求,url:http://47.108.157.13:8090/blog/addBlog
+[32mINFO    [0m utils.logger_utils:request_util.py:21 接口信息是：{'headers': {'User-Token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlck5hbWUiOiJsaXNpIiwiaWF0IjoxNzgwMjMyNTM3LCJleHAiOjE3ODA4MzczMzd9.n0hHy5jxrsSK8t97ypVXkdlj_e5Cq9SMZtBHYUkPACo'}, 'json': {'userId': '1', 'title': 'test1', 'content': ''}}
+[32mINFO    [0m utils.logger_utils:request_util.py:23 接口响应状态码：400
+[32mINFO    [0m utils.logger_utils:request_util.py:24 接口响应内容是：{"code":-1,"errMsg":"参数不合法:博客内容不能为空","data":null}

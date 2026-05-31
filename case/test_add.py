@@ -1,14 +1,9 @@
-
 from jsonschema.validators import validate
 import pytest
-from utils.yaml_util import read_yaml
-from utils.request_util import Request,host
-
-
+from api.blog_api import BlogApi
 
 
 class TestAdd:
-    url = host + "blog/addBlog"
     schema = {
         "type": "object",
         "required": ["code","errMsg","data"],
@@ -25,18 +20,10 @@ class TestAdd:
         }
     }
     #未登录访问
-    def test_add_noloogin(self):
-        res = Request().post(url=self.url)
+    def test_add_nologin(self):
+        res = BlogApi().add_blog("1", "", "", no_auth=True)
         assert res.status_code == 401
 
-
-
-
-# {
-# 	"userId": "1",
-# 	"title": "111",
-# 	"content": "##在这里写下一篇博客"
-# }
     #登录访问
     @pytest.mark.parametrize("login",[
         #标题内容都不为空
@@ -68,21 +55,7 @@ class TestAdd:
             "data": None
         }
     ])
-    def test_login(self,login):
-        token = read_yaml("data.yaml","user_token_header")
-        header = {
-            "User-Token":token
-        }
-        data = {
-            "userId": login["userId"],
-            "title": login["title"],
-             "content": login["content"]
-        }
-        res = Request().post(url=self.url,json = data,headers=header)
+    def test_add(self,login):
+        res = BlogApi().add_blog(login["userId"], login["title"], login["content"])
         validate(instance=res.json(), schema=self.schema)
         assert res.json()["data"] == login["data"]
-
-
-
-
-        

@@ -1,0 +1,4 @@
+[32mINFO    [0m utils.logger_utils:request_util.py:20 准备开始发起 post 请求,url:http://47.108.157.13:8090/user/login
+[32mINFO    [0m utils.logger_utils:request_util.py:21 接口信息是：{'headers': {'User-Token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlck5hbWUiOiJ6aGFuZ3NhbiIsImlhdCI6MTc4MDIzMjUzNywiZXhwIjoxNzgwODM3MzM3fQ.Hx-PWcktNt491-6lFaMUmAqNBGytM8T-U4CqQyqHxyE'}, 'json': {'userName': 'lisi', 'password': '123456'}}
+[32mINFO    [0m utils.logger_utils:request_util.py:23 接口响应状态码：200
+[32mINFO    [0m utils.logger_utils:request_util.py:24 接口响应内容是：{"code":200,"errMsg":null,"data":{"id":2,"token":"eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlck5hbWUiOiJsaXNpIiwiaWF0IjoxNzgwMjMyNTM3LCJleHAiOjE3ODA4MzczMzd9.n0hHy5jxrsSK8t97ypVXkdlj_e5Cq9SMZtBHYUkPACo"}}

@@ -1,14 +1,11 @@
-
 import pytest
 from jsonschema.validators import validate
-from utils.request_util import Request,host
-from utils.yaml_util import read_yaml, write_yaml
-
+from api.user_api import UserApi
+from utils.yaml_util import read_yaml, update_yaml
 
 
 @pytest.mark.order(3)
 class TestAuthorInfo:
-    url = host + "user/getAuthorInfo?blogId="
     schema = {
         "type": "object",
         "required": ["code", "errMsg","data"],
@@ -40,37 +37,18 @@ class TestAuthorInfo:
 
     #未登录状态获取作者信息
     def test_authorinfo_nologin(self):
-        url = self.url + str(read_yaml("data.yaml", "blogId"))
-        res = Request().get(url=url)
+        res = UserApi().get_author_info(read_yaml("data.yaml", "blogId"), no_auth=True)
         assert res.status_code == 401
 
-    #登录状态获取作者信息&正确的blgId
+    #登录状态获取作者信息&正确的blogId
     def test_authorinfo_login(self):
-        url = self.url + str(read_yaml("data.yaml", "blogId"))
-        token = read_yaml("data.yaml", "user_token_header")
-        header = {
-            "User-Token": token 
-        }
-        res = Request().get(url=url,headers=header)
+        res = UserApi().get_author_info(read_yaml("data.yaml", "blogId"))
         validate(instance=res.json(), schema=self.schema)
         assert res.json()["code"] == 200
-        id = {
-            "user_id": res.json()["data"]["id"]
-        }
-        #将用户id存入data.yaml
-        write_yaml("data.yaml", id)
+        update_yaml("data.yaml", {"user_id": res.json()["data"]["id"]})
 
-    #登录状态获取作者信息&错误的blgId
+    #登录状态获取作者信息&错误的blogId
     @pytest.mark.parametrize("blogId",["","0","0.1","-1","a","9999999"])
     def test_authorinfo_login_fail(self,blogId):
-        url = self.url + blogId
-        token = read_yaml("data.yaml", "user_token_header")
-        header = {
-            "User-Token": token 
-        }
-        res = Request().get(url=url,headers=header)
+        res = UserApi().get_author_info(blogId)
         assert res.json()["code"] == -1
-
-
-
-
